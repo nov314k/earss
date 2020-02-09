@@ -17,6 +17,8 @@
 
 package earss;
 
+import java.nio.file.FileSystems;
+
 /**
  * User-configurable settings, such as:
  * - File locations
@@ -24,13 +26,15 @@ package earss;
  * - Messages (information and error messages)
  */
 public class Settings {
+    static final String PATH_SEPARATOR = FileSystems.getDefault().getSeparator();
     static final String APPLICATION_FORM_WINDOW_TITLE = "Employee Attendance Registration System (EARS)";
     static final String ARRIVAL_DATE_TIME_FORMAT = "yyyy.MM.dd HH:mm + ";
-    static final String ARRIVAL_RECORDS_FILE_NAME = "records/arrivals.txt";
+    static final String RECORDS_FOLDER_PATH = "records";
+    static final String ARRIVAL_RECORDS_FILE_PATH = RECORDS_FOLDER_PATH + PATH_SEPARATOR + "arrivals.txt";
     static final String ARRIVAL_REGEX_STRING = " \\+ ";
-    static final String ARRIVAL_REPORT_FILE_NAME = "records/report.txt";
+    static final String ARRIVAL_REPORT_FILE_PATH = RECORDS_FOLDER_PATH + PATH_SEPARATOR + "report.txt";
     static final String CHARACTER_ENCODING = "UTF-8";
-    static final String EMPLOYEE_NAMES_FILE_NAME = "records/employees.txt";
+    static final String EMPLOYEE_NAMES_FILE_PATH = RECORDS_FOLDER_PATH + PATH_SEPARATOR + "employees.txt";
     static final String ERR_ENTER_EMPLOYEE_NAME = "ERROR: Please enter employee name";
     static final String MSG_EMPLOYEE_ARRIVAL_RECORDED = "Employee arrival has been recorded";
     static final String MSG_EMPLOYEE_NOT_FOUND = "Entered employee name is not on the list";
