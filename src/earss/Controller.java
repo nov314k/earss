@@ -35,8 +35,8 @@ import javafx.scene.control.TextField;
  */
 public class Controller implements Initializable {
     Employee employee;
-    ArrivalsAdmin arrivalsAdmin;
-    EmployeesAdmin employeesAdmin;
+    Registrar arrivalsAdmin;
+    Collective employeesAdmin;
     String listViewSelectedEmployee;
     @FXML
     Button btnClose = new Button();
@@ -61,7 +61,7 @@ public class Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        employeesAdmin = new EmployeesAdmin();
+        employeesAdmin = new Collective();
         try {
             employeesAdmin.readEmployees();
         } catch (IOException e) {
@@ -105,14 +105,14 @@ public class Controller implements Initializable {
         }
     }
     
-    public void shutdown() {
-        System.out.println("Closing down properly...");
-        System.exit(0);
-    }
-    
     @FXML
     private void onActionClose(ActionEvent event) {
         this.shutdown();
+    }
+    
+    public void shutdown() {
+        System.out.println("Closing down properly...");
+        System.exit(0);
     }
 
     @FXML
@@ -120,7 +120,7 @@ public class Controller implements Initializable {
         lblEmployeeName.setText("");
         lblEmployeeRegistration.setText("");
         lvEmployees.getSelectionModel().clearSelection();
-        arrivalsAdmin = new ArrivalsAdmin();
+        arrivalsAdmin = new Registrar();
         arrivalsAdmin.readArrivals();
         arrivalsAdmin.sortForReport();
         arrivalsAdmin.writeReport();
