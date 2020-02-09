@@ -74,7 +74,8 @@ public class Main extends Application {
             try {
                 Files.createDirectories(records_folder);
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName())
+                        .log(Level.SEVERE, null, ex);
             }
         }
         Path employees_file = Paths.get(Settings.EMPLOYEE_NAMES_FILE_PATH);
@@ -82,7 +83,8 @@ public class Main extends Application {
             try {
                 Files.createFile(employees_file);
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName())
+                        .log(Level.SEVERE, null, ex);
             }
         }
         Path arrivals_file = Paths.get(Settings.ARRIVAL_RECORDS_FILE_PATH);
@@ -90,7 +92,8 @@ public class Main extends Application {
             try {
                 Files.createFile(arrivals_file);
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName())
+                        .log(Level.SEVERE, null, ex);
             }
         }
         Path report_file = Paths.get(Settings.ARRIVAL_REPORT_FILE_PATH);
@@ -98,7 +101,8 @@ public class Main extends Application {
             try {
                 Files.createFile(report_file);
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName())
+                        .log(Level.SEVERE, null, ex);
             }
         }
     }
