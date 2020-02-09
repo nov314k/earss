@@ -18,35 +18,34 @@
 package earss;
 
 /**
- * Models arrival data.
- * @author Novak Petrovic
+ * Arrival data model
  */
 public class Arrival {
-  private String employeeName;
-  private String timeStamp;
+    private String employeeName;
+    private String timeStamp;
 
-  Arrival(final String employeeName, final String timeStamp) {
-    this.employeeName = employeeName;
-    this.timeStamp = timeStamp;
-  }
+    Arrival(final String employeeName, final String timeStamp) {
+        this.employeeName = employeeName;
+        this.timeStamp = timeStamp;
+    }
 
-  String getEmployeeName() {
-    return this.employeeName;
-  }
+    String getEmployeeName() {
+        return this.employeeName;
+    }
 
-  void setEmployeeName(String employeeName) {
-    this.employeeName = employeeName;
-  }
+    void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
 
-  String getSortOnValue() {
-    return this.employeeName + this.timeStamp;
-  }
+    String getSortOnValue() {
+        return this.employeeName + this.timeStamp;
+    }
 
-  String getTimeStamp() {
-    return this.timeStamp;
-  }
+    String getTimeStamp() {
+        return this.timeStamp;
+    }
 
-  void setTimeStamp(String timeStamp) {
-    this.timeStamp = timeStamp;
-  }
+    void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 }

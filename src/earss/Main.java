@@ -22,25 +22,25 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.stage.Stage;
 
 /**
- * Main class.
+ * Application entry point.
  */
 public class Main extends Application {
   
-  public static void main(String[] args) {
-    launch(args);
-    return;
-  }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-  @Override
-  public void start(Stage primaryStage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
-    Scene scene = new Scene(root);
-    primaryStage.setTitle(Settings.APPLICATION_FORM_WINDOW_TITLE);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-  }
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
+        Scene scene = new Scene(root);
+        String css = this.getClass().getResource("earss.css").toExternalForm(); 
+        scene.getStylesheets().add(css);
+        primaryStage.setTitle(Settings.APPLICATION_FORM_WINDOW_TITLE);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

@@ -18,21 +18,23 @@
 package earss;
 
 /**
- * Settings class, for file locations, formats, info and error messages, etc.
+ * User-configurable settings, such as:
+ * - File locations
+ * - Formats, regex strings
+ * - Messages (information and error messages)
  */
 public class Settings {
-  static final String APPLICATION_FORM_WINDOW_TITLE = 
-      "Employee Attendance Registration System (EARS)";
-  static final String ARRIVAL_DATE_TIME_FORMAT = "yyyy.MM.dd HH:mm + ";
-  static final String ARRIVAL_RECORDS_FILE_NAME = "records/arrivals.txt";
-  static final String ARRIVAL_REGEX_STRING = " \\+ ";
-  static final String ARRIVAL_REPORT_FILE_NAME = "records/report.txt";
-  static final String CHARACTER_ENCODING = "UTF-8";
-  static final String EMPLOYEE_NAMES_FILE_NAME = "records/employees.txt";
-  static final String ERR_ENTER_EMPLOYEE_NAME = "ERROR: Please enter employee name";
-  static final String MSG_EMPLOYEE_ARRIVAL_RECORDED = "Employee arrival has been recorded";
-  static final String MSG_EMPLOYEE_NOT_FOUND = "Entered employee name is not on the list";
-  static final String MSG_EXISTING_EMPLOYEE_REMOVED = "Existing employee has been removed";
-  static final String MSG_NEW_EMPLOYEE_ADDED = "New employee has been added";
-  static final String MSG_REPORT_GENERATED = "Attendance report has been generated";
+    static final String APPLICATION_FORM_WINDOW_TITLE = "Employee Attendance Registration System (EARS)";
+    static final String ARRIVAL_DATE_TIME_FORMAT = "yyyy.MM.dd HH:mm + ";
+    static final String ARRIVAL_RECORDS_FILE_NAME = "records/arrivals.txt";
+    static final String ARRIVAL_REGEX_STRING = " \\+ ";
+    static final String ARRIVAL_REPORT_FILE_NAME = "records/report.txt";
+    static final String CHARACTER_ENCODING = "UTF-8";
+    static final String EMPLOYEE_NAMES_FILE_NAME = "records/employees.txt";
+    static final String ERR_ENTER_EMPLOYEE_NAME = "ERROR: Please enter employee name";
+    static final String MSG_EMPLOYEE_ARRIVAL_RECORDED = "Employee arrival has been recorded";
+    static final String MSG_EMPLOYEE_NOT_FOUND = "Entered employee name is not on the list";
+    static final String MSG_EXISTING_EMPLOYEE_REMOVED = "Existing employee has been removed";
+    static final String MSG_NEW_EMPLOYEE_ADDED = "New employee has been added";
+    static final String MSG_REPORT_GENERATED = "Attendance report has been generated";
 }

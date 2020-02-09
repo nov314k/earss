@@ -31,121 +31,131 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 /**
- * Form controller; this is where all action happens.
+ * Interface controller
  */
 public class Controller implements Initializable {
-  ArrivalList arrivals;
-  @FXML Button btnAddEmployee = new Button();
-  @FXML Button btnClose = new Button();
-  @FXML Button btnGenerateReport = new Button();
-  @FXML Button btnRegisterArrival = new Button();
-  @FXML Button btnRemoveEmployee = new Button();
-  Employee emp;
-  EmployeeList employees;
-  @FXML Label lblEmployeeName = new Label();
-  @FXML Label lblEmployeeRegistration = new Label();
-  @FXML Label lblMessages = new Label();
-  String listViewSelectedEmployee;
-  @FXML ListView<String> lvEmployees = new ListView<String>();
-  @FXML TextField tfEmployeeName = new TextField();
-
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {
-    employees = new EmployeeList();
-    try {
-      employees.readEmployees();
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
-    employees.sortEmployeeList();
-    for (Employee it : employees.getEmployees()) {
-      lvEmployees.getItems().add(it.getEmployeeName());
-    }
-    lvEmployees.getSelectionModel().selectedItemProperty().addListener(
-        new ChangeListener<String>() {
-          @Override
-          public void changed(ObservableValue<? extends String> observable, String o, String n) {
-            listViewSelectedEmployee = n;
-            lblMessages.setText("");
-            lblEmployeeRegistration.setText("");
-            lblEmployeeName.setText(listViewSelectedEmployee);
-          }
-        });
-  }
-
-  @FXML
-  private void onactionAddEmployee(ActionEvent event) throws IOException {
-    lblEmployeeName.setText("");
-    lblEmployeeRegistration.setText("");
-    lvEmployees.getSelectionModel().clearSelection();
-    String enteredNewEmployeeName = tfEmployeeName.getText();
-    if (!enteredNewEmployeeName.isEmpty()) {
-      emp = new Employee(enteredNewEmployeeName);
-      emp.writeNewEmployee();
-      employees.addNewEmployee(emp);
-      employees.sortEmployeeList();
-      lvEmployees.getItems().clear();
-      for (Employee e : employees.getEmployees()) {
-        lvEmployees.getItems().add(e.getEmployeeName());
-      }
-      lblMessages.setText(Settings.MSG_NEW_EMPLOYEE_ADDED);
-      tfEmployeeName.setText("");
-    } else {
-      lblMessages.setText(Settings.ERR_ENTER_EMPLOYEE_NAME);
-    }
-  }
-
-  @FXML
-  private void onactionClose(ActionEvent event) {
-    System.exit(0);
-  }
-
-  @FXML
-  private void onactionGenerateReport(ActionEvent event) throws IOException {
-    lblEmployeeName.setText("");
-    lblEmployeeRegistration.setText("");
-    lvEmployees.getSelectionModel().clearSelection();
-    arrivals = new ArrivalList();
-    arrivals.readArrivals();
-    arrivals.sortForReport();
-    arrivals.writeReport();
-    lblMessages.setText(Settings.MSG_REPORT_GENERATED);
-  }
-
-  @FXML
-  private void onactionRegisterArrival(ActionEvent event) throws IOException {
-    if ((listViewSelectedEmployee != null) && !listViewSelectedEmployee.isEmpty()) {
-      lblMessages.setText("");
-      emp = new Employee(listViewSelectedEmployee);
-      emp.recordArrival(listViewSelectedEmployee);
-      lblEmployeeRegistration.setText(Settings.MSG_EMPLOYEE_ARRIVAL_RECORDED);
-    }
-  }
-
-  @FXML
-  private void onactionRemoveEmployee(ActionEvent event) throws IOException {
-    lblEmployeeName.setText("");
-    lblEmployeeRegistration.setText("");
-    lvEmployees.getSelectionModel().clearSelection();
-    String enteredEmployeeName = tfEmployeeName.getText();
-    if (!enteredEmployeeName.isEmpty()) {
-      boolean employeeFound = employees.removeExistingEmployee(enteredEmployeeName);
-      if (employeeFound) {
-        employees.writeAllEmployees();
-        employees.sortEmployeeList();
-        lvEmployees.getItems().clear();
-        for (Employee e : employees.getEmployees()) {
-          lvEmployees.getItems().add(e.getEmployeeName());
+    Employee employee;
+    ArrivalsAdmin arrivalsAdmin;
+    EmployeesAdmin employeesAdmin;
+    String listViewSelectedEmployee;
+    @FXML
+    Button btnClose = new Button();
+    @FXML
+    Button btnAddEmployee = new Button();
+    @FXML
+    Button btnRemoveEmployee = new Button();
+    @FXML
+    Button btnGenerateReport = new Button();
+    @FXML
+    Button btnRegisterArrival = new Button();
+    @FXML
+    Label lblMessages = new Label();
+    @FXML
+    Label lblEmployeeName = new Label();
+    @FXML
+    Label lblEmployeeRegistration = new Label();
+    @FXML
+    TextField tfEmployeeName = new TextField();
+    @FXML
+    ListView<String> lvEmployees = new ListView<String>();
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        employeesAdmin = new EmployeesAdmin();
+        try {
+            employeesAdmin.readEmployees();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
-        lblMessages.setText(Settings.MSG_EXISTING_EMPLOYEE_REMOVED);
-        tfEmployeeName.setText("");
-      } else {
-        lblMessages.setText(Settings.MSG_EMPLOYEE_NOT_FOUND);
-        tfEmployeeName.setText("");
-      }
-    } else {
-      lblMessages.setText(Settings.ERR_ENTER_EMPLOYEE_NAME);
-      tfEmployeeName.setText("");
+        employeesAdmin.sortEmployeeList();
+        for (Employee e : employeesAdmin.getEmployees()) {
+            lvEmployees.getItems().add(e.getEmployeeName());
+        }
+        lvEmployees.getSelectionModel().selectedItemProperty().addListener(
+            new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String o, String n) {
+                    listViewSelectedEmployee = n;
+                    lblMessages.setText("");
+                    lblEmployeeRegistration.setText("");
+                    lblEmployeeName.setText(listViewSelectedEmployee);
+                }
+            });
     }
-  }
+
+    @FXML
+    private void onactionAddEmployee(ActionEvent event) throws IOException {
+        lblEmployeeName.setText("");
+        lblEmployeeRegistration.setText("");
+        lvEmployees.getSelectionModel().clearSelection();
+        String newEmployeeName = tfEmployeeName.getText();
+        if (!newEmployeeName.isEmpty()) {
+            employee = new Employee(newEmployeeName);
+            employee.writeNewEmployee();
+            employeesAdmin.addNewEmployee(employee);
+            employeesAdmin.sortEmployeeList();
+            lvEmployees.getItems().clear();
+            for (Employee e : employeesAdmin.getEmployees()) {
+                lvEmployees.getItems().add(e.getEmployeeName());
+            }
+            lblMessages.setText(Settings.MSG_NEW_EMPLOYEE_ADDED);
+            tfEmployeeName.setText("");
+        } else {
+            lblMessages.setText(Settings.ERR_ENTER_EMPLOYEE_NAME);
+        }
+    }
+
+    @FXML
+    private void onactionClose(ActionEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void onactionGenerateReport(ActionEvent event) throws IOException {
+        lblEmployeeName.setText("");
+        lblEmployeeRegistration.setText("");
+        lvEmployees.getSelectionModel().clearSelection();
+        arrivalsAdmin = new ArrivalsAdmin();
+        arrivalsAdmin.readArrivals();
+        arrivalsAdmin.sortForReport();
+        arrivalsAdmin.writeReport();
+        lblMessages.setText(Settings.MSG_REPORT_GENERATED);
+    }
+
+    @FXML
+    private void onactionRegisterArrival(ActionEvent event) throws IOException {
+        if ((listViewSelectedEmployee != null) && !listViewSelectedEmployee.isEmpty()) {
+            lblMessages.setText("");
+            employee = new Employee(listViewSelectedEmployee);
+            employee.recordArrival(listViewSelectedEmployee);
+            lblEmployeeRegistration.setText(Settings.MSG_EMPLOYEE_ARRIVAL_RECORDED);
+        }
+    }
+
+    @FXML
+    private void onactionRemoveEmployee(ActionEvent event) throws IOException {
+        lblEmployeeName.setText("");
+        lblEmployeeRegistration.setText("");
+        lvEmployees.getSelectionModel().clearSelection();
+        String enteredEmployeeName = tfEmployeeName.getText();
+        if (!enteredEmployeeName.isEmpty()) {
+            boolean employeeFound = employeesAdmin.removeExistingEmployee(enteredEmployeeName);
+            if (employeeFound) {
+                employeesAdmin.writeAllEmployees();
+                employeesAdmin.sortEmployeeList();
+                lvEmployees.getItems().clear();
+                for (Employee e : employeesAdmin.getEmployees()) {
+                    lvEmployees.getItems().add(e.getEmployeeName());
+                }
+                lblMessages.setText(Settings.MSG_EXISTING_EMPLOYEE_REMOVED);
+                tfEmployeeName.setText("");
+            } else {
+                lblMessages.setText(Settings.MSG_EMPLOYEE_NOT_FOUND);
+                tfEmployeeName.setText("");
+            }
+        } else {
+            lblMessages.setText(Settings.ERR_ENTER_EMPLOYEE_NAME);
+            tfEmployeeName.setText("");
+        }
+    }
 }
