@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package earss;
 
 import java.io.BufferedReader;
@@ -33,6 +32,7 @@ import java.util.Collections;
  * read/write, etc.
  */
 public class Collective {
+
     private ArrayList<Employee> employees;
 
     Collective() {
@@ -48,16 +48,17 @@ public class Collective {
     }
 
     /**
-    * Reads all employee names from a text file.
-    * @throws IOException Reading from a text file
-    */
+     * Reads all employee names from a text file.
+     *
+     * @throws IOException Reading from a text file
+     */
     public void readEmployees() throws IOException {
         String s;
         BufferedReader br = null;
-        File f = new File(Settings.EMPLOYEE_NAMES_FILE_NAME);
+        File f = new File(Settings.EMPLOYEE_NAMES_FILE_PATH);
         try {
             InputStreamReader isr = new InputStreamReader(
-                    new FileInputStream(f), 
+                    new FileInputStream(f),
                     Settings.CHARACTER_ENCODING);
             br = new BufferedReader(isr);
             while ((s = br.readLine()) != null) {
@@ -71,10 +72,11 @@ public class Collective {
     }
 
     /**
-    * Searches for an employee (by name), and, if found, removes it.
-    * @param employeeNameToRemove Employee name to search and remove
-    * @return A boolean indicating whether the name was found or not
-    */
+     * Searches for an employee (by name), and, if found, removes it.
+     *
+     * @param employeeNameToRemove Employee name to search and remove
+     * @return A boolean indicating whether the name was found or not
+     */
     public boolean removeExistingEmployee(String employeeNameToRemove) {
         int aux = 0;
         boolean employeeFound = false;
@@ -91,23 +93,24 @@ public class Collective {
     }
 
     /**
-    * Sorts employees by name.
-    */
+     * Sorts employees by name.
+     */
     public void sortEmployeeList() {
         Collections.sort(
-            this.employees, 
-            (e1, e2) -> e1.getEmployeeName().compareTo(e2.getEmployeeName()));
+                this.employees,
+                (e1, e2) -> e1.getEmployeeName().compareTo(e2.getEmployeeName()));
     }
 
     /**
-    * Writes all employees to a text file. 
-    * This method is used each time when a new employee is added, to store their name,
-    * and this is perhaps an overkill. An alternative is to only insert the new employee
-    * name into the text file.
-    * @throws IOException Writing to a text file
-    */
+     * Writes all employees to a text file. This method is used each time when a
+     * new employee is added, to store their name, and this is perhaps an
+     * overkill. An alternative is to only insert the new employee name into the
+     * text file.
+     *
+     * @throws IOException Writing to a text file
+     */
     public void writeAllEmployees() throws IOException {
-        File f = new File(Settings.EMPLOYEE_NAMES_FILE_NAME);
+        File f = new File(Settings.EMPLOYEE_NAMES_FILE_PATH);
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(

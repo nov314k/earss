@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package earss;
 
 import java.io.BufferedReader;
@@ -32,21 +31,23 @@ import java.util.Collections;
  * Arrivals data model
  */
 public class Registrar {
+
     ArrayList<Arrival> arrivals;
 
     Registrar() {
         this.arrivals = new ArrayList<>();
     }
-  
+
     /**
-    * Reads arrival records from a text file.
-    * @throws IOException Reading from a text file
-    */
+     * Reads arrival records from a text file.
+     *
+     * @throws IOException Reading from a text file
+     */
     public void readArrivals() throws IOException {
         String[] tokens;
         String s = null;
         BufferedReader br = null;
-        File f = new File(Settings.ARRIVAL_RECORDS_FILE_NAME);
+        File f = new File(Settings.ARRIVAL_RECORDS_FILE_PATH);
         try {
             br = new BufferedReader(new InputStreamReader(
                     new FileInputStream(f), Settings.CHARACTER_ENCODING));
@@ -60,24 +61,25 @@ public class Registrar {
             br.close();
         }
     }
-  
+
     /**
-    * Sorts arrival records on employee name. 
-    */
+     * Sorts arrival records on employee name.
+     */
     public void sortForReport() {
         Collections.sort(this.arrivals, (a1, a2) -> a2.getSortOnValue().compareTo(a1.getSortOnValue()));
     }
-  
+
     /**
-    * Writes attendance report to a text file.
-    * @throws IOException Writing to a text file
-    */
+     * Writes attendance report to a text file.
+     *
+     * @throws IOException Writing to a text file
+     */
     public void writeReport() throws IOException {
-        File f = new File(Settings.ARRIVAL_REPORT_FILE_NAME);
+        File f = new File(Settings.ARRIVAL_REPORT_FILE_PATH);
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(f, false), Settings.CHARACTER_ENCODING));
+                    new FileOutputStream(f, false), Settings.CHARACTER_ENCODING));
             for (Arrival a : this.arrivals) {
                 bw.write(a.getEmployeeName());
                 bw.write(": ");
