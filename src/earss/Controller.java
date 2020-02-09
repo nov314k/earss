@@ -104,10 +104,15 @@ public class Controller implements Initializable {
             lblMessages.setText(Settings.ERR_ENTER_EMPLOYEE_NAME);
         }
     }
-
+    
+    public void shutdown() {
+        System.out.println("Closing down properly...");
+        System.exit(0);
+    }
+    
     @FXML
     private void onactionClose(ActionEvent event) {
-        System.exit(0);
+        this.shutdown();
     }
 
     @FXML

@@ -29,18 +29,23 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
   
+    Controller controller;
+    
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Interface.fxml"));        
+        Parent root = loader.load();
+        Controller controller = loader.getController();
         Scene scene = new Scene(root);
         String css = this.getClass().getResource("earss.css").toExternalForm(); 
         scene.getStylesheets().add(css);
         primaryStage.setTitle(Settings.APPLICATION_FORM_WINDOW_TITLE);
         primaryStage.setScene(scene);
+        primaryStage.setOnHidden(e -> controller.shutdown());
         primaryStage.show();
     }
 }
