@@ -10,13 +10,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="earss.Controller">
     <children>
-        <Button fx:id="btnRegisterArrival" layoutX="414.0" layoutY="14.0" onAction="#onactionRegisterArrival" prefHeight="35.0" prefWidth="327.0" text="Register arrival"></Button>
-        <Button fx:id="btnRemoveEmployee" layoutX="570.0" layoutY="459.0" onAction="#onactionRemoveEmployee" prefHeight="35.0" prefWidth="180.0" text="Remove employee"></Button>
+        <Button fx:id="btnRegisterArrival" layoutX="414.0" layoutY="14.0" onAction="#onActionRegisterArrival" prefHeight="35.0" prefWidth="327.0" text="Register arrival"></Button>
+        <Button fx:id="btnRemoveEmployee" layoutX="570.0" layoutY="459.0" onAction="#onActionRemoveEmployee" prefHeight="35.0" prefWidth="180.0" text="Remove employee"></Button>
         <ListView fx:id="lvEmployees" layoutX="14.0" layoutY="14.0" prefHeight="487.0" prefWidth="387.0" AnchorPane.leftAnchor="14.0" styleClass="listView"/>
-        <Button fx:id="btnAddEmployee" layoutX="413.0" layoutY="458.0" onAction="#onactionAddEmployee" prefHeight="35.0" prefWidth="145.0" text="Add employee"></Button>
+        <Button fx:id="btnAddEmployee" layoutX="413.0" layoutY="458.0" onAction="#onActionAddEmployee" prefHeight="35.0" prefWidth="145.0" text="Add employee"></Button>
         <TextField fx:id="tfEmployeeName" layoutX="415.0" layoutY="396.0" prefHeight="39.0" prefWidth="327.0"></TextField>
-        <Button fx:id="btnGenerateReport" layoutX="414.0" layoutY="74.0" onAction="#onactionGenerateReport" prefHeight="35.0" prefWidth="327.0" text="Generate report"></Button>
-        <Button fx:id="btnClose" layoutX="414.0" layoutY="252.0" onAction="#onactionClose" prefHeight="35.0" prefWidth="327.0" text="Close"></Button>
+        <Button fx:id="btnGenerateReport" layoutX="414.0" layoutY="74.0" onAction="#onActionGenerateReport" prefHeight="35.0" prefWidth="327.0" text="Generate report"></Button>
+        <Button fx:id="btnClose" layoutX="414.0" layoutY="252.0" onAction="#onActionClose" prefHeight="35.0" prefWidth="327.0" text="Close"></Button>
         <Label fx:id="lblEmployeeName" alignment="CENTER" layoutX="414.0" layoutY="147.0" prefHeight="35.0" prefWidth="327.0" text="Select an employee" textAlignment="CENTER" textFill="#004bff"></Label>
         <Label fx:id="lblEmployeeRegistration" alignment="CENTER" layoutX="415.0" layoutY="192.0" prefHeight="35.0" prefWidth="327.0" text="← from the list ←" textAlignment="CENTER" textFill="#004bff"></Label>
         <Label fx:id="lblMessages" alignment="CENTER" layoutX="414.0" layoutY="329.0" prefHeight="35.0" prefWidth="327.0" text="Welcome!" textAlignment="CENTER" textFill="#ff2a2c"></Label>

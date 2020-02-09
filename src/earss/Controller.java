@@ -84,7 +84,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void onactionAddEmployee(ActionEvent event) throws IOException {
+    private void onActionAddEmployee(ActionEvent event) throws IOException {
         lblEmployeeName.setText("");
         lblEmployeeRegistration.setText("");
         lvEmployees.getSelectionModel().clearSelection();
@@ -111,12 +111,12 @@ public class Controller implements Initializable {
     }
     
     @FXML
-    private void onactionClose(ActionEvent event) {
+    private void onActionClose(ActionEvent event) {
         this.shutdown();
     }
 
     @FXML
-    private void onactionGenerateReport(ActionEvent event) throws IOException {
+    private void onActionGenerateReport(ActionEvent event) throws IOException {
         lblEmployeeName.setText("");
         lblEmployeeRegistration.setText("");
         lvEmployees.getSelectionModel().clearSelection();
@@ -128,7 +128,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void onactionRegisterArrival(ActionEvent event) throws IOException {
+    private void onActionRegisterArrival(ActionEvent event) throws IOException {
         if ((listViewSelectedEmployee != null) && !listViewSelectedEmployee.isEmpty()) {
             lblMessages.setText("");
             employee = new Employee(listViewSelectedEmployee);
@@ -138,7 +138,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void onactionRemoveEmployee(ActionEvent event) throws IOException {
+    private void onActionRemoveEmployee(ActionEvent event) throws IOException {
         lblEmployeeName.setText("");
         lblEmployeeRegistration.setText("");
         lvEmployees.getSelectionModel().clearSelection();
