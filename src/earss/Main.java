@@ -16,10 +16,13 @@
  */
 package earss;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import static java.nio.file.StandardOpenOption.CREATE;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -80,8 +83,16 @@ public class Main extends Application {
         }
         Path employees_file = Paths.get(Settings.EMPLOYEE_NAMES_FILE_PATH);
         if (!Files.isRegularFile(employees_file)) {
+            OutputStream output = null;
             try {
-                Files.createFile(employees_file);
+                output = new BufferedOutputStream(
+                        Files.newOutputStream(employees_file, CREATE));
+                for (String s : Settings.SAMPLE_EMPLOYEES) {
+                    s += Settings.NEW_LINE;
+                    output.write(s.getBytes());
+                }
+                output.flush();
+                output.close();
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName())
                         .log(Level.SEVERE, null, ex);

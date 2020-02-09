@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package earss;
 
 import java.io.IOException;
@@ -34,6 +33,7 @@ import javafx.scene.control.TextField;
  * Interface controller
  */
 public class Controller implements Initializable {
+
     Employee employee;
     Registrar arrivalsAdmin;
     Collective employeesAdmin;
@@ -58,7 +58,7 @@ public class Controller implements Initializable {
     TextField tfEmployeeName = new TextField();
     @FXML
     ListView<String> lvEmployees = new ListView<String>();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         employeesAdmin = new Collective();
@@ -72,15 +72,15 @@ public class Controller implements Initializable {
             lvEmployees.getItems().add(e.getEmployeeName());
         }
         lvEmployees.getSelectionModel().selectedItemProperty().addListener(
-            new ChangeListener<String>() {
-                @Override
-                public void changed(ObservableValue<? extends String> observable, String o, String n) {
-                    listViewSelectedEmployee = n;
-                    lblMessages.setText("");
-                    lblEmployeeRegistration.setText("");
-                    lblEmployeeName.setText(listViewSelectedEmployee);
-                }
-            });
+                new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String o, String n) {
+                listViewSelectedEmployee = n;
+                lblMessages.setText("");
+                lblEmployeeRegistration.setText("");
+                lblEmployeeName.setText(listViewSelectedEmployee);
+            }
+        });
     }
 
     @FXML
@@ -104,14 +104,14 @@ public class Controller implements Initializable {
             lblMessages.setText(Settings.ERR_ENTER_EMPLOYEE_NAME);
         }
     }
-    
+
     @FXML
     private void onActionClose(ActionEvent event) {
         this.shutdown();
     }
-    
+
     public void shutdown() {
-        System.out.println("Closing down properly...");
+        System.out.println("EARS has finished.");
         System.exit(0);
     }
 

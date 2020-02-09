@@ -8,7 +8,7 @@
     <update check="always"/>
     <resources>
         <j2se version="10.0.2+" href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="earss.jar" size="19176" download="eager"/>
+        <jar href="earss.jar" size="20068" download="eager"/>
     </resources>
     <jfx:javafx-desc width="800" height="600" main-class="earss.Main" name="Main"/>
 </jnlp>

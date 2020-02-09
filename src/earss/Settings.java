@@ -24,6 +24,7 @@ import java.nio.file.FileSystems;
  */
 public class Settings {
 
+    static final String NEW_LINE = "\n";
     static final String PATH_SEPARATOR = FileSystems.getDefault().getSeparator();
     static final String APPLICATION_FORM_WINDOW_TITLE = "Employee Attendance Registration System (EARS)";
     static final String ARRIVAL_DATE_TIME_FORMAT = "yyyy.MM.dd HH:mm + ";
