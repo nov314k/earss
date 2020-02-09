@@ -14,18 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package earss;
 
 import java.nio.file.FileSystems;
 
 /**
- * User-configurable settings, such as:
- * - File locations
- * - Formats, regex strings
- * - Messages (information and error messages)
+ * User-configurable settings, such as: - File locations - Formats, regex
+ * strings - Messages (information and error messages)
  */
 public class Settings {
+
     static final String PATH_SEPARATOR = FileSystems.getDefault().getSeparator();
     static final String APPLICATION_FORM_WINDOW_TITLE = "Employee Attendance Registration System (EARS)";
     static final String ARRIVAL_DATE_TIME_FORMAT = "yyyy.MM.dd HH:mm + ";
@@ -41,4 +39,26 @@ public class Settings {
     static final String MSG_EXISTING_EMPLOYEE_REMOVED = "Existing employee has been removed";
     static final String MSG_NEW_EMPLOYEE_ADDED = "New employee has been added";
     static final String MSG_REPORT_GENERATED = "Attendance report has been generated";
+    static final String[] SAMPLE_EMPLOYEES = {
+        "Alfredo Wu",
+        "Allie Conyer",
+        "Alona Wilburn",
+        "Augustina Jess",
+        "Clementina Tomasello",
+        "Deonna Maio",
+        "Emelina Depew",
+        "Errol Waymire",
+        "Felice Kolar",
+        "Frances Schlecht",
+        "Gilberto Maughan",
+        "Ileana Webre",
+        "Kit Moraga",
+        "Lani Monteiro",
+        "Maris Pichon",
+        "Salvador Chilton",
+        "Theda Godley",
+        "Tora Fegley",
+        "Tyrell Dinsmore",
+        "Verda Gehrke"
+    };
 }
