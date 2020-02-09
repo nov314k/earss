@@ -18,7 +18,10 @@ package earss;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,7 +40,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         if (!existRecords()) {
-            System.exit(0);
+            this.createSampleRecords();
         }
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("Interface.fxml"));
@@ -53,7 +56,6 @@ public class Main extends Application {
     }
 
     public boolean existRecords() {
-
         if (Files.isDirectory(Paths.get(Settings.RECORDS_FOLDER_PATH))
                 && Files.isRegularFile(Paths.get(
                         Settings.EMPLOYEE_NAMES_FILE_PATH))
@@ -67,6 +69,37 @@ public class Main extends Application {
     }
 
     public void createSampleRecords() {
-
+        Path records_folder = Paths.get(Settings.RECORDS_FOLDER_PATH);
+        if (!Files.isDirectory(records_folder)) {
+            try {
+                Files.createDirectories(records_folder);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        Path employees_file = Paths.get(Settings.EMPLOYEE_NAMES_FILE_PATH);
+        if (!Files.isRegularFile(employees_file)) {
+            try {
+                Files.createFile(employees_file);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        Path arrivals_file = Paths.get(Settings.ARRIVAL_RECORDS_FILE_PATH);
+        if (!Files.isRegularFile(arrivals_file)) {
+            try {
+                Files.createFile(arrivals_file);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        Path report_file = Paths.get(Settings.ARRIVAL_REPORT_FILE_PATH);
+        if (!Files.isRegularFile(report_file)) {
+            try {
+                Files.createFile(report_file);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
