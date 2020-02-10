@@ -15,3 +15,7 @@ Stores all data in plain text files.
 ![ears4 screenshot](docs/screenshots/ears4.png?raw=true "ears4 screenshot")
 
 ![ears5 screenshot](docs/screenshots/ears5.png?raw=true "ears5 screenshot")
+
+## References ##
+[How to test with TestFX](https://medium.com/information-and-technology/test-driven-development-in-javafx-with-testfx-66a84cd561e0)
+[VocabHunter](https://vocabhunter.github.io/2016/07/27/TestFX.html)

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="earss">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/earss.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
