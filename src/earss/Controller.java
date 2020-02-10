@@ -35,8 +35,8 @@ import javafx.scene.control.TextField;
 public class Controller implements Initializable {
 
     Employee employee;
-    Registrar arrivalsAdmin;
-    Collective employeesAdmin;
+    Registrar registrar = new Registrar();
+    Collective collective = new Collective();
     String listViewSelectedEmployee;
     @FXML
     Button btnClose = new Button();
@@ -61,20 +61,21 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        employeesAdmin = new Collective();
         try {
-            employeesAdmin.readEmployees();
+            collective.readEmployees();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        employeesAdmin.sortEmployeeList();
-        for (Employee e : employeesAdmin.getEmployees()) {
+        collective.sortEmployeeList();
+        for (Employee e : collective.getEmployees()) {
             lvEmployees.getItems().add(e.getEmployeeName());
         }
         lvEmployees.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String o, String n) {
+            public void changed(
+                    ObservableValue<? extends String> observable, String o,
+                    String n) {
                 listViewSelectedEmployee = n;
                 lblMessages.setText("");
                 lblEmployeeRegistration.setText("");
@@ -92,10 +93,10 @@ public class Controller implements Initializable {
         if (!newEmployeeName.isEmpty()) {
             employee = new Employee(newEmployeeName);
             employee.writeNewEmployee();
-            employeesAdmin.addNewEmployee(employee);
-            employeesAdmin.sortEmployeeList();
+            collective.addNewEmployee(employee);
+            collective.sortEmployeeList();
             lvEmployees.getItems().clear();
-            for (Employee e : employeesAdmin.getEmployees()) {
+            for (Employee e : collective.getEmployees()) {
                 lvEmployees.getItems().add(e.getEmployeeName());
             }
             lblMessages.setText(Settings.MSG_NEW_EMPLOYEE_ADDED);
@@ -120,20 +121,19 @@ public class Controller implements Initializable {
         lblEmployeeName.setText("");
         lblEmployeeRegistration.setText("");
         lvEmployees.getSelectionModel().clearSelection();
-        arrivalsAdmin = new Registrar();
-        arrivalsAdmin.readArrivals();
-        arrivalsAdmin.sortForReport();
-        arrivalsAdmin.writeReport();
+        registrar.generateReport();
         lblMessages.setText(Settings.MSG_REPORT_GENERATED);
     }
 
     @FXML
     private void onActionRegisterArrival(ActionEvent event) throws IOException {
-        if ((listViewSelectedEmployee != null) && !listViewSelectedEmployee.isEmpty()) {
+        if (listViewSelectedEmployee != null
+                && !listViewSelectedEmployee.isEmpty()) {
             lblMessages.setText("");
             employee = new Employee(listViewSelectedEmployee);
-            employee.recordArrival(listViewSelectedEmployee);
-            lblEmployeeRegistration.setText(Settings.MSG_EMPLOYEE_ARRIVAL_RECORDED);
+            employee.recordArrival();
+            lblEmployeeRegistration.setText(
+                    Settings.MSG_EMPLOYEE_ARRIVAL_RECORDED);
         }
     }
 
@@ -143,14 +143,14 @@ public class Controller implements Initializable {
         lblEmployeeRegistration.setText("");
         lvEmployees.getSelectionModel().clearSelection();
         String enteredEmployeeName = tfEmployeeName.getText();
+        boolean employeeRemoved = false;
         if (!enteredEmployeeName.isEmpty()) {
-            boolean employeeFound = employeesAdmin.removeExistingEmployee(enteredEmployeeName);
-            if (employeeFound) {
-                employeesAdmin.writeAllEmployees();
-                employeesAdmin.sortEmployeeList();
+            employeeRemoved = collective.removeExistingEmployee(
+                    enteredEmployeeName);
+            if (employeeRemoved) {
                 lvEmployees.getItems().clear();
-                for (Employee e : employeesAdmin.getEmployees()) {
-                    lvEmployees.getItems().add(e.getEmployeeName());
+                for (Employee employee : collective.getEmployees()) {
+                    lvEmployees.getItems().add(employee.getEmployeeName());
                 }
                 lblMessages.setText(Settings.MSG_EXISTING_EMPLOYEE_REMOVED);
                 tfEmployeeName.setText("");

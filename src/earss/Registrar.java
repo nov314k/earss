@@ -63,10 +63,11 @@ public class Registrar {
     }
 
     /**
-     * Sorts arrival records on employee name.
+     * Sorts arrival records on employee full name (first and second).
      */
     public void sortForReport() {
-        Collections.sort(this.arrivals, (a1, a2) -> a2.getSortOnValue().compareTo(a1.getSortOnValue()));
+        Collections.sort(this.arrivals,
+                (a1, a2) -> a2.getSortOnValue().compareTo(a1.getSortOnValue()));
     }
 
     /**
@@ -91,5 +92,11 @@ public class Registrar {
         } finally {
             bw.close();
         }
+    }
+
+    public void generateReport() throws IOException {
+        this.readArrivals();
+        this.sortForReport();
+        this.writeReport();
     }
 }

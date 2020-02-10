@@ -35,21 +35,17 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
     /**
      * Writes employee arrival date and time to a text file.
      *
-     * @param employeeName Name of the employee
      * @throws IOException Writing to a text file
      */
-    public void recordArrival(String employeeName) throws IOException {
+    public void recordArrival() throws IOException {
         File f = new File(Settings.ARRIVAL_RECORDS_FILE_PATH);
         BufferedWriter bw = null;
-        String timest = new SimpleDateFormat(Settings.ARRIVAL_DATE_TIME_FORMAT).format(new Date());
-        Arrival arrival = new Arrival(employeeName, timest);
+        String timestamp = new SimpleDateFormat(
+                Settings.ARRIVAL_DATE_TIME_FORMAT).format(new Date());
+        Arrival arrival = new Arrival(this.getEmployeeName(), timestamp);
         try {
             OutputStreamWriter osw = new OutputStreamWriter(
                     new FileOutputStream(f, true),
@@ -57,7 +53,7 @@ public class Employee {
             bw = new BufferedWriter(osw);
             bw.write(arrival.getTimeStamp());
             bw.write(arrival.getEmployeeName());
-            bw.write('\n');
+            bw.write(Settings.NEW_LINE);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -67,6 +63,10 @@ public class Employee {
 
     public void setEmployeeName(final String employeeName) {
         this.employeeName = employeeName;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
     }
 
     @Override

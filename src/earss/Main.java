@@ -71,7 +71,7 @@ public class Main extends Application {
         return false;
     }
 
-    public void createSampleRecords() {
+    public void createSampleRecords() throws IOException {
         Path records_folder = Paths.get(Settings.RECORDS_FOLDER_PATH);
         if (!Files.isDirectory(records_folder)) {
             try {
@@ -91,11 +91,13 @@ public class Main extends Application {
                     s += Settings.NEW_LINE;
                     output.write(s.getBytes());
                 }
-                output.flush();
-                output.close();
+
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName())
                         .log(Level.SEVERE, null, ex);
+            } finally {
+                output.flush();
+                output.close();
             }
         }
         Path arrivals_file = Paths.get(Settings.ARRIVAL_RECORDS_FILE_PATH);

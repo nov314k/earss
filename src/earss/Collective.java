@@ -72,22 +72,27 @@ public class Collective {
     }
 
     /**
-     * Searches for an employee (by name), and, if found, removes it.
+     * Searches for an employee (by full name), and, if found, removes it.
      *
      * @param employeeNameToRemove Employee name to search and remove
-     * @return A boolean indicating whether the name was found or not
+     * @return Boolean indicating whether the name was found or not
      */
-    public boolean removeExistingEmployee(String employeeNameToRemove) {
-        int aux = 0;
+    public boolean removeExistingEmployee(String employeeNameToRemove)
+            throws IOException {
+        int counter = 0;
         boolean employeeFound = false;
         for (Employee e : employees) {
             if (e.getEmployeeName().equals(employeeNameToRemove)) {
-                employees.remove(aux);
+                employees.remove(counter);
                 employeeFound = true;
                 break;
             } else {
-                ++aux;
+                counter++;
             }
+        }
+        if (employeeFound) {
+            this.sortEmployeeList();
+            this.writeAllEmployees();
         }
         return employeeFound;
     }
